@@ -25,10 +25,23 @@ function validate() {
     } else {
         result += "Description: " + description + "\n";
     }
+    $('#table tr:last').after('<tr><td>' + name +'</td></tr>');
     alert(result);
+
     return false;
 }
 
+
+function addRow(){
+    let name = $('#name').val();
+    let surname = $('#sname').val();
+    let gender = getSelectedText("gender");
+    let description = $('#description').val();
+    $('#tbody tr:last').after('<tr><td>' + name +'</td><td>'
+     + surname +'</td><td>' + gender
+      + '</td><td>' + description + '</td></tr>');
+    return false;
+}
 function getSelectedText(elementId) {
     var elt = document.getElementById(elementId);
   
