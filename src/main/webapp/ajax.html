@@ -22,6 +22,18 @@
             document.getElementById('eLabel').innerHTML = err;
         });
     }
+    function jsonRequest() {
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:8080/job4j_html_war/json',
+            data: 'name=' + $('#exampleInputEmail1').val(),
+            dataType: 'text'
+        }).done(function(data) {
+            document.getElementById('json').textContent  = JSON.stringify(data, undefined, 2);;
+        }).fail(function(err){
+            document.getElementById('json').textContent  = err;
+        });
+    }
 </script>
 <div class="container">
     <form>
@@ -30,6 +42,19 @@
             <label id="eLabel"></label><input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
         </div>
         <button type="button" class="btn btn-primary" onclick="sendGreeting()">Submit</button>
+    </form>
+</div>
+<div class="container">
+    <form>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Name to JSON</label><br>
+            <input type="name" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter name">
+        </div>
+        <button type="button" class="btn btn-primary" onclick="jsonRequest()">Submit</button>
+        <br><label>JSON result</label>
+        <div class="alert alert-primary">
+            <pre id="json"></pre>
+        </div>
     </form>
 </div>
 </body>
